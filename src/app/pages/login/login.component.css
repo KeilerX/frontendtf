@@ -1,0 +1,12 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.example-container>* {
+    width: 90%;
+}
+
+.example-space {
+    flex: 1 1 auto;
+}

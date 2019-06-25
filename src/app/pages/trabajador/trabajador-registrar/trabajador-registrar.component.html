@@ -1,0 +1,63 @@
+<mat-card>Ingrese los datos del Trabajador</mat-card>
+
+<br />
+
+<form
+  class="example-container"
+  [formGroup]="form"
+  (ngSubmit)="operar()"
+  #frmTrabajador="ngForm"
+>
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="id" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombres" required formControlName="nombres" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Apellidos"
+      required
+      formControlName="apellidos"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Sexo" required formControlName="sexo" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Dirección"
+      required
+      formControlName="direccion"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Escoge una fecha"
+      max="maxFecha"
+      formControlName="fecha_nacimiento"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <!-- <button mat-raised-button color="accent" routerLink="/" type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button> -->
+</form>

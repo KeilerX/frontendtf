@@ -1,0 +1,31 @@
+<mat-toolbar>Registro de Postulación</mat-toolbar>
+<div class="example-container">
+  <mat-form-field>
+    <mat-select placeholder="Trabajador" [(value)]="idTrabajadorSeleccionado">
+      <mat-option *ngFor="let a of trabajadores" [value]="a.id"
+        >{{ a.nombres }} {{ a.apellidos }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Trabajo" [(value)]="idTrabajoSeleccionado">
+      <mat-option *ngFor="let b of trabajos" [value]="e.id">{{
+        b.descripcion
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Estado" [(ngModel)]="estado" required />
+  </mat-form-field>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="aceptar()"
+    [disabled]="estadoBotonRegistrar()"
+  >
+    Registrar
+  </button>
+</div>

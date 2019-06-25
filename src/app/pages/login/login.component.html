@@ -1,0 +1,46 @@
+<!-- <mat-toolbar>Inicio de Sesión de Usuario</mat-toolbar>
+<div class="example-container">
+  <mat-form-field>
+    <mat-select placeholder="Trabajador" [(value)]="idTrabajadorSeleccionado">
+      <mat-option *ngFor="let t of trabajadores" [value]="t.id"
+        >{{ t.nombres }} {{ t.apellidos }}</mat-option
+      >
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['trabajador', 'idTrabajadorSeleccionado']"
+  >
+    Iniciar como Trabajador
+  </button>
+
+  <br />
+
+  <mat-form-field>
+    <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionada">
+      <mat-option *ngFor="let e of empresas" [value]="t.id">{{
+        t.nombre
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['empresa', 'idEmpresaSeleccionado']"
+  >
+    Iniciar como Empresa
+  </button>
+</div>
+ -->
+
+<mat-toolbar>Inicio de Sesión de Usuario</mat-toolbar>
+<div class="example-container">
+  <button mat-raised-button color="primary" routerLink="/trabajador">
+    Iniciar como Trabajador
+  </button>
+  <br />
+  <button mat-raised-button color="primary" routerLink="/empresa">
+    Iniciar como Empresa
+  </button>
+</div>

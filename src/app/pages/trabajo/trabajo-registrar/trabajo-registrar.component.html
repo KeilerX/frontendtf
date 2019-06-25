@@ -1,0 +1,60 @@
+<mat-toolbar>Ingrese los datos del Trabajo</mat-toolbar>
+<div class="example-container">
+  <mat-form-field>
+    <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionado">
+      <mat-option *ngFor="let e of empresas" [value]="e.id">{{
+        p.descripcion
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Descripción"
+      [(ngModel)]="descripcion"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input
+      matInput
+      required
+      placeholder="Sueldo"
+      [(ngModel)]="sueldo"
+      type="number"
+      min="0"
+    />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Estado" [(ngModel)]="estado" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Area" [(value)]="idAreaSeleccionado">
+      <mat-option *ngFor="let a of areas" [value]="a.id">
+        {{ a.nombre }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="agregarArea()">
+    Agregar Área
+  </button>
+
+  <mat-toolbar *ngFor="let a of areasSeleccionados; let i = index">
+    {{ a.nombre }}
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="aceptar()"
+    [disabled]="estadoBotonRegistrar()"
+  >
+    Registrar
+  </button>
+</div>

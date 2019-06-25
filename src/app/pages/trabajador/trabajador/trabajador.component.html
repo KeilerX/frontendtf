@@ -1,0 +1,50 @@
+<div class="example-container">
+  <mat-toolbar color="primary" class="example-toolbar">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+      <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+    </button>
+
+    <h1 class="example-app-name">Trabajador</h1>
+
+    <span class="example-spacer"></span>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container">
+    <mat-sidenav #sidenav mode="side" style="width: 200px">
+      <button
+        mat-menu-item
+        (click)="sidenav.toggle()"
+        routerLink="/trabajador-perfil"
+        style="cursor: pointer"
+      >
+        <mat-icon>assignment ind icon</mat-icon>
+        <span>Mi Perfil</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button
+        mat-menu-item
+        (click)="sidenav.toggle()"
+        routerLink="/trabajo-listar"
+        style="cursor: pointer"
+      >
+        <mat-icon>assignment ind icon</mat-icon>
+        <span>Trabajos</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button
+        mat-menu-item
+        (click)="sidenav.toggle()"
+        routerLink="/trabajo-postulacion"
+        style="cursor: pointer"
+      >
+        <mat-icon>assignment ind icon</mat-icon>
+        <span>Postulación</span>
+      </button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,57 @@
+<mat-card>Ingrese los datos de la Empresa</mat-card>
+
+<br />
+
+<form
+  class="example-container"
+  [formGroup]="form"
+  (ngSubmit)="operar()"
+  #frmEmpresa="ngForm"
+>
+  <div [hidden]="true">
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="ID" required formControlName="id" />
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Nombre" required formControlName="nombre" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Dirección"
+      required
+      formControlName="direccion"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Teléfono"
+      required
+      formControlName="telefono"
+      type="number"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Descripción"
+      required
+      formControlName="descripcion"
+    />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">
+    <mat-icon>done</mat-icon>
+    <span>Aceptar</span>
+  </button>
+  <!-- <button mat-raised-button color="accent" routerLink="/" type="button">
+    <mat-icon>close</mat-icon>
+    <span>Cancelar</span>
+  </button> -->
+</form>
