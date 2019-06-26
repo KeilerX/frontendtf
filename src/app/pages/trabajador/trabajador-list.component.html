@@ -1,4 +1,4 @@
-<mat-toolbar>Trabajos</mat-toolbar>
+<mat-toolbar>Trabajadores</mat-toolbar>
 <div class="example-container mat-elevation-z8">
   <router-outlet></router-outlet>
 
@@ -7,43 +7,48 @@
       <input
         matInput
         (keyup)="applyFilter($event.target.value)"
-        placeholder="Buscar Trabajo"
+        placeholder="Buscar Trabajador"
       />
     </mat-form-field>
   </div>
 
   <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="idTrabajo">
+    <ng-container matColumnDef="idTrabajador">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="descripcion">
+    <ng-container matColumnDef="nombres">
       <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Descripción</mat-header-cell
+        >Nombres</mat-header-cell
       >
-      <mat-cell *matCellDef="let row">{{ row.descripcion }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.nombres }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="sueldo">
+    <ng-container matColumnDef="apellidos">
       <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Sueldo</mat-header-cell
+        >Apellidos</mat-header-cell
       >
-      <mat-cell *matCellDef="let row">{{ row.sueldo }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.apellidos }}</mat-cell>
     </ng-container>
 
-    <!--     <ng-container matColumnDef="estado">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Estado</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row">{{ row.estado }}</mat-cell>
-    </ng-container> -->
+    <ng-container matColumnDef="sexo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Sexo</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.sexo }}</mat-cell>
+    </ng-container>
 
-    <ng-container matColumnDef="empresa">
+    <ng-container matColumnDef="direccion">
       <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Empresa</mat-header-cell
+        >Dirección</mat-header-cell
       >
-      <mat-cell *matCellDef="let row">{{ row.empresa.nombre }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.direccion }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha_nacimiento">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Fecha de Nacimiento</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.fecha_nacimiento }}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="acciones">
@@ -59,3 +64,14 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>
+
+<br />
+
+<button
+  mat-fab
+  color="accent"
+  style="float: right"
+  routerLink="/trabajador-listar/nuevo"
+>
+  <mat-icon>create</mat-icon>
+</button>

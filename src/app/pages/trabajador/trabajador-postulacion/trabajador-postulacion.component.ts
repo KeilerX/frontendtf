@@ -1,10 +1,14 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, OnChanges } from "@angular/core";
 import { Trabajador } from "src/app/model/trabajador";
 import { Trabajo } from "src/app/model/trabajo";
 import { TrabajoService } from "src/app/service/trabajo.service";
 import { TrabajadorService } from "src/app/service/trabajador.service";
 import { MatSnackBar } from "@angular/material";
 import { TrabajadorPostulacion } from "src/app/model/trabajadorPostulacion";
+import { Postulacion } from "src/app/model/postulacion";
+import { PostulacionService } from "src/app/service/postulacion.service";
+import { UsuarioService } from "src/app/service/usuario.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-trabajador-postulacion",
@@ -15,29 +19,56 @@ export class TrabajadorPostulacionComponent implements OnInit {
   trabajadores: Trabajador[] = [];
   trabajos: Trabajo[] = [];
 
-  id: number = 0;
+  id: number;
   idTrabajadorSeleccionado: number;
   idTrabajoSeleccionado: number;
 
-  estado: string;
+  cTrabajador: Trabajador;
+  userId: number;
+  _subscription_user_id: Subscription;
+
+  nombres: string;
+  estado: number = 0;
 
   mensaje: string;
 
   constructor(
     private trabajoService: TrabajoService,
     private trabajadorService: TrabajadorService,
+    private postulacionService: PostulacionService,
+    private usuarioService: UsuarioService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.listarTrabajadores();
+    this._subscription_user_id = this.usuarioService.execChange.subscribe(
+      value => {
+        this.idTrabajadorSeleccionado = value; // this.username will hold your value and modify it every time it changes
+        console.log(this.idTrabajadorSeleccionado);
+      }
+    );
+    //this.listarTrabajadores();
+    this.listarTrabajador();
     this.listarTrabajos();
   }
 
   listarTrabajadores() {
-    this.trabajadorService.listar().subscribe(data => {
-      this.trabajadores = data;
-    });
+    this.trabajadorService
+      .listarTrabajadorPorId(+localStorage.getItem("trabajador"))
+      .subscribe(data => {
+        this.cTrabajador = data;
+        console.log(data);
+      });
+    this.idTrabajadorSeleccionado = +localStorage.getItem("trabajador");
+    this.nombres = this.cTrabajador.nombres.concat(this.cTrabajador.apellidos);
+  }
+
+  listarTrabajador() {
+    this.trabajadorService
+      .listarTrabajadorPorId(this.idTrabajadorSeleccionado)
+      .subscribe(data => {
+        this.cTrabajador = data;
+      });
   }
 
   listarTrabajos() {
@@ -53,13 +84,13 @@ export class TrabajadorPostulacionComponent implements OnInit {
     let trabajo = new Trabajo();
     trabajo.id = this.idTrabajoSeleccionado;
 
-    let trabajadorPostulacion = new TrabajadorPostulacion();
-    trabajadorPostulacion.trabajador = trabajador;
-    trabajadorPostulacion.trabajo = trabajo;
-    trabajadorPostulacion.id = this.id;
+    let postulacion = new Postulacion();
+    postulacion.trabajador = trabajador;
+    postulacion.trabajo = trabajo;
+    postulacion.id = this.id;
 
-    this.trabajadorService.postular(trabajadorPostulacion).subscribe(data => {
-      this.snackBar.open("Se postuló al trabajo correctamento", "Aviso", {
+    this.postulacionService.registrar(postulacion).subscribe(data => {
+      this.snackBar.open("Se postuló al trabajo correctamente.", "Aviso", {
         duration: 2000
       });
       setTimeout(() => {
@@ -71,7 +102,7 @@ export class TrabajadorPostulacionComponent implements OnInit {
   limpiarControles() {
     this.idTrabajadorSeleccionado = 0;
     this.idTrabajoSeleccionado = 0;
-    this.estado = "";
+    this.estado = 0;
     this.mensaje = "";
   }
 

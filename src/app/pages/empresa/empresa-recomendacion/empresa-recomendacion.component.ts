@@ -5,6 +5,8 @@ import { TrabajadorService } from "src/app/service/trabajador.service";
 import { EmpresaService } from "src/app/service/empresa.service";
 import { MatSnackBar } from "@angular/material";
 import { TrabajadorRecomendacion } from "src/app/model/trabajadorRecomendacion";
+import { RecomendacionService } from "src/app/service/recomendacion.service";
+import { Recomendacion } from "src/app/model/recomendacion";
 
 @Component({
   selector: "app-empresa-recomendacion",
@@ -16,7 +18,7 @@ export class EmpresaRecomendacionComponent implements OnInit {
   empresas: Empresa[] = [];
   comentario: string;
 
-  id: number = 0;
+  id: number;
   idTrabajadorSeleccionado: number;
   idEmpresaSeleccionado: number;
 
@@ -25,6 +27,7 @@ export class EmpresaRecomendacionComponent implements OnInit {
   constructor(
     private trabajadorService: TrabajadorService,
     private empresaService: EmpresaService,
+    private recomendacionService: RecomendacionService,
     private snackBar: MatSnackBar
   ) {}
 
@@ -51,14 +54,15 @@ export class EmpresaRecomendacionComponent implements OnInit {
     let empresa = new Empresa();
     empresa.id = this.idEmpresaSeleccionado;
 
-    let trabajadorRecomendacion = new TrabajadorRecomendacion();
-    trabajadorRecomendacion.empresa = empresa;
-    trabajadorRecomendacion.trabajador = trabajador;
-    trabajadorRecomendacion.comentario = this.comentario;
-    trabajadorRecomendacion.id = this.id;
+    let recomendacion = new Recomendacion();
+    recomendacion.empresa = empresa;
+    recomendacion.trabajador = trabajador;
+    recomendacion.comentario = this.comentario;
+    recomendacion.id = this.id;
 
-    this.empresaService.recomendar(trabajadorRecomendacion).subscribe(data => {
-      this.snackBar.open("Se recomendó correctamente al usuario.", "Aviso", {
+    console.log(recomendacion);
+    this.recomendacionService.registrar(recomendacion).subscribe(data => {
+      this.snackBar.open("Se recomendó correctamente al trabajador.", "Aviso", {
         duration: 2000
       });
       setTimeout(() => {

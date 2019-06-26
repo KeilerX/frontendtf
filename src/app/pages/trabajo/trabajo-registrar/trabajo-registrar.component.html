@@ -3,24 +3,18 @@
   <mat-form-field>
     <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionado">
       <mat-option *ngFor="let e of empresas" [value]="e.id">{{
-        p.descripcion
+        e.nombre
       }}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
-    <input
-      matInput
-      required
-      placeholder="Descripción"
-      [(ngModel)]="descripcion"
-    />
+    <input matInput placeholder="Descripción" [(ngModel)]="descripcion" />
   </mat-form-field>
 
   <mat-form-field>
     <input
       matInput
-      required
       placeholder="Sueldo"
       [(ngModel)]="sueldo"
       type="number"
@@ -28,9 +22,9 @@
     />
   </mat-form-field>
 
-  <mat-form-field>
+  <!--   <mat-form-field>
     <input matInput placeholder="Estado" [(ngModel)]="estado" />
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field>
     <mat-select placeholder="Area" [(value)]="idAreaSeleccionado">

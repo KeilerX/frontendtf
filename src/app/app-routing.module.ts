@@ -13,6 +13,8 @@ import { EmpresaRegistrarComponent } from "./pages/empresa/empresa-registrar/emp
 import { TrabajadorRegistrarComponent } from "./pages/trabajador/trabajador-registrar/trabajador-registrar.component";
 import { TrabajoRegistrarComponent } from "./pages/trabajo/trabajo-registrar/trabajo-registrar.component";
 import { TrabajoComponent } from "./pages/trabajo/trabajo.component";
+import { TrabajadorListComponent } from "./pages/trabajador/trabajador-list.component";
+import { EmpresaListComponent } from "./pages/empresa/empresa-list.component";
 
 const routes: Routes = [
   /*   {
@@ -25,8 +27,12 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: "empresa-registrar",
-    component: EmpresaRegistrarComponent
+    path: "empresa-listar",
+    component: EmpresaListComponent,
+    children: [
+      { path: "nuevo", component: EmpresaRegistrarComponent },
+      { path: "edicion/:id", component: EmpresaRegistrarComponent }
+    ]
   },
   {
     path: "trabajador-registrar",
@@ -53,8 +59,12 @@ const routes: Routes = [
     component: EmpresaComponent
   },
   {
-    path: "trabajo-registrar",
-    component: TrabajoRegistrarComponent
+    path: "trabajador-listar",
+    component: TrabajadorListComponent,
+    children: [
+      { path: "nuevo", component: TrabajadorRegistrarComponent },
+      { path: "edicion/:id", component: TrabajadorRegistrarComponent }
+    ]
   },
   {
     path: "trabajador-recomendacion",
@@ -63,6 +73,10 @@ const routes: Routes = [
   {
     path: "trabajo-postulacion",
     component: TrabajadorPostulacionComponent
+  },
+  {
+    path: "trabajo-registrar",
+    component: TrabajoRegistrarComponent
   },
   {
     path: "area",

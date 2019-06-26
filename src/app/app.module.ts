@@ -7,20 +7,6 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 
-import {
-  MatDialogModule,
-  MatSnackBarModule,
-  MatButtonModule,
-  MatSidenavModule,
-  MatToolbarModule,
-  MatIconModule,
-  MatMenuModule,
-  MatDividerModule,
-  MatInputModule,
-  MatTableModule,
-  MatPaginatorModule,
-  MatCardModule
-} from "@angular/material";
 import { LoginComponent } from "./pages/login/login.component";
 import { RegisterComponent } from "./pages/register/register.component";
 import { TrabajadorComponent } from "./pages/trabajador/trabajador/trabajador.component";
@@ -28,6 +14,7 @@ import { TrabajadorPerfilComponent } from "./pages/trabajador/trabajador-perfil/
 import { TrabajadorPostulacionComponent } from "./pages/trabajador/trabajador-postulacion/trabajador-postulacion.component";
 import { EmpresaComponent } from "./pages/empresa/empresa/empresa.component";
 import { EmpresaRecomendacionComponent } from "./pages/empresa/empresa-recomendacion/empresa-recomendacion.component";
+import { EmpresaListComponent } from "./pages/empresa/empresa-list.component";
 import { EmpresaPublicacionComponent } from "./pages/empresa/empresa-publicacion/empresa-publicacion.component";
 import { AreaComponent } from "./pages/area/area.component";
 import { AreaEdicionComponent } from "./pages/area/area-edicion/area-edicion.component";
@@ -37,7 +24,9 @@ import { TrabajadorRegistrarComponent } from "./pages/trabajador/trabajador-regi
 import { RecomendacionComponent } from "./pages/recomendacion/recomendacion.component";
 import { TrabajoRegistrarComponent } from "./pages/trabajo/trabajo-registrar/trabajo-registrar.component";
 import { TrabajoComponent } from "./pages/trabajo/trabajo.component";
-import { TrabajoEdicionComponent } from './pages/trabajo/trabajo-edicion/trabajo-edicion.component';
+import { TrabajadorListComponent } from "./pages/trabajador/trabajador-list.component";
+import { TrabajoEdicionComponent } from "./pages/trabajo/trabajo-edicion/trabajo-edicion.component";
+import { UsuarioService } from "./service/usuario.service";
 
 @NgModule({
   declarations: [
@@ -49,10 +38,12 @@ import { TrabajoEdicionComponent } from './pages/trabajo/trabajo-edicion/trabajo
     TrabajadorPostulacionComponent,
     EmpresaComponent,
     EmpresaRecomendacionComponent,
+    EmpresaListComponent,
     EmpresaPublicacionComponent,
     AreaComponent,
     AreaEdicionComponent,
     EmpresaRegistrarComponent,
+    TrabajadorListComponent,
     TrabajadorRegistrarComponent,
     RecomendacionComponent,
     TrabajoRegistrarComponent,
@@ -65,21 +56,9 @@ import { TrabajoEdicionComponent } from './pages/trabajo/trabajo-edicion/trabajo
     MaterialModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatMenuModule,
-    MatDividerModule,
-    MatInputModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatCardModule,
-    MatSnackBarModule,
-    MatDialogModule
+    FormsModule
   ],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

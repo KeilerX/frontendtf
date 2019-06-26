@@ -17,8 +17,8 @@ import { TrabajoListaArea } from "src/app/model/trabajoListaArea";
 export class TrabajoRegistrarComponent implements OnInit {
   empresas: Empresa[] = [];
   descripcion: string;
-  sueldo: number;
-  estado: boolean;
+  sueldo: number = 0;
+  estado: boolean = false;
   areas: Area[] = [];
 
   idAreaSeleccionado: number;
@@ -82,13 +82,14 @@ export class TrabajoRegistrarComponent implements OnInit {
   }
 
   aceptar() {
-    let area = new Area();
-    area.id = this.idAreaSeleccionado;
+    /*     let area = new Area();
+    area.id = this.idAreaSeleccionado; */
     let empresa = new Empresa();
     empresa.id = this.idEmpresaSeleccionado;
 
     let trabajo = new Trabajo();
     trabajo.empresa = empresa;
+    trabajo.descripcion = this.descripcion;
     trabajo.estado = this.estado;
     trabajo.sueldo = this.sueldo;
 
@@ -104,6 +105,7 @@ export class TrabajoRegistrarComponent implements OnInit {
         this.limpiarControles();
       }, 2000);
     });
+    console.log(trabajoListaArea);
   }
 
   limpiarControles() {
@@ -112,6 +114,8 @@ export class TrabajoRegistrarComponent implements OnInit {
     this.idAreaSeleccionado = 0;
     this.idEmpresaSeleccionado = 0;
     this.mensaje = "";
+    this.descripcion = "";
+    this.sueldo = 0;
   }
 
   estadoBotonRegistrar() {

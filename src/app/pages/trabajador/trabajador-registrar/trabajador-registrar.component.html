@@ -40,24 +40,22 @@
     />
   </mat-form-field>
 
-  <mat-form-field>
+  <mat-form-field class="example-full-width">
     <input
       matInput
-      [matDatepicker]="picker"
-      placeholder="Escoge una fecha"
-      max="maxFecha"
+      placeholder="Fecha de Nacimiento"
+      required
       formControlName="fecha_nacimiento"
+      type="datetime-local"
     />
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit">
     <mat-icon>done</mat-icon>
     <span>Aceptar</span>
   </button>
-  <!-- <button mat-raised-button color="accent" routerLink="/" type="button">
+  <button mat-raised-button color="accent" routerLink="/trabajador-list">
     <mat-icon>close</mat-icon>
     <span>Cancelar</span>
-  </button> -->
+  </button>
 </form>

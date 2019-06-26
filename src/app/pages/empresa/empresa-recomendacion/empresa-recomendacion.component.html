@@ -9,8 +9,8 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Empresa" [(value)]="idEmpreSeleccionado">
-      <mat-option *ngFor="let b of empresas" [value]="e.id">{{
+    <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionado">
+      <mat-option *ngFor="let b of empresas" [value]="b.id">{{
         b.nombre
       }}</mat-option>
     </mat-select>

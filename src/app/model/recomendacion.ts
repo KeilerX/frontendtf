@@ -1,5 +1,9 @@
+import { Trabajador } from "./trabajador";
+import { Empresa } from "./empresa";
+
 export class Recomendacion {
   id: number;
-  descripcion: string;
-  estado: boolean;
+  trabajador: Trabajador;
+  empresa: Empresa;
+  comentario: string;
 }

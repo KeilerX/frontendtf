@@ -1,38 +1,39 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource, MatSnackBar } from "@angular/material";
-import { Trabajo } from "src/app/model/trabajo";
-import { TrabajoService } from "src/app/service/trabajo.service";
+import { Empresa } from "src/app/model/empresa";
+import { EmpresaService } from "src/app/service/empresa.service";
 
 @Component({
-  selector: "app-trabajo",
-  templateUrl: "./trabajo.component.html",
-  styleUrls: ["./trabajo.component.css"]
+  selector: "app-empresa",
+  templateUrl: "./empresa-list.component.html",
+  styleUrls: ["./empresa-list.component.css"]
 })
-export class TrabajoComponent implements OnInit {
-  dataSource: MatTableDataSource<Trabajo>;
+export class EmpresaListComponent implements OnInit {
+  dataSource: MatTableDataSource<Empresa>;
   displayedColumns = [
-    "idTrabajo",
+    "idEmpresa",
+    "nombre",
+    "direccion",
+    "telefono",
     "descripcion",
-    "sueldo",
-    "empresa",
     "acciones"
   ];
 
   constructor(
-    private trabajoService: TrabajoService,
+    private empresaService: EmpresaService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this.trabajoService.trabajoCambio.subscribe(data => {
+    this.empresaService.empresaCambio.subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
 
-    this.trabajoService.mensajeCambio.subscribe(data => {
+    this.empresaService.mensajeCambio.subscribe(data => {
       this.snackBar.open(data, "Aviso", { duration: 2000 });
     });
 
-    this.trabajoService.listar().subscribe(data => {
+    this.empresaService.listar().subscribe(data => {
       this.dataSource = new MatTableDataSource(data);
     });
   }
