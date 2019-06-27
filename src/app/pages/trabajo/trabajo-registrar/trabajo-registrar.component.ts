@@ -24,6 +24,8 @@ export class TrabajoRegistrarComponent implements OnInit {
   idAreaSeleccionado: number;
   idEmpresaSeleccionado: number;
 
+  cEmpresa: Empresa = new Empresa();
+
   areasSeleccionados: Area[] = [];
   mensaje: string;
 
@@ -40,9 +42,13 @@ export class TrabajoRegistrarComponent implements OnInit {
   }
 
   listarEmpresas() {
-    this.empresaService.listar().subscribe(data => {
-      this.empresas = data;
-    });
+    this.empresaService
+      .listarEmpresaPorId(+localStorage.getItem("empresa"))
+      .subscribe(data => {
+        this.cEmpresa = data;
+        console.log(data);
+      });
+    this.idEmpresaSeleccionado = +localStorage.getItem("empresa");
   }
 
   listarAreas() {

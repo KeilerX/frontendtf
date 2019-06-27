@@ -1,67 +1,82 @@
-<mat-card>Perfil</mat-card>
+<br />
+<button
+  mat-raised-button
+  color="primary"
+  routerLink="/trabajador"
+  style="width: 100px;"
+>
+  Volver
+</button>
+<br />
+<mat-toolbar>Mi Perfil</mat-toolbar>
 
 <br />
 
-<form
-  class="example-container"
-  [formGroup]="form"
-  (ngSubmit)="operar()"
-  #frmTrabajador="ngForm"
->
-  <div [hidden]="true">
-    <mat-form-field class="example-full-width">
-      <input matInput placeholder="ID" required formControlName="id" />
-    </mat-form-field>
-  </div>
-
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nombres" required formControlName="nombres" />
-  </mat-form-field>
-
+<div class="example-container">
   <mat-form-field class="example-full-width">
     <input
+      disabled
       matInput
-      placeholder="Apellidos"
       required
-      formControlName="apellidos"
-    />
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Sexo" required formControlName="sexo" />
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input
-      matInput
-      placeholder="Dirección"
-      required
-      formControlName="direccion"
+      [(ngModel)]="trabajador.nombres"
+      style="font-weight: 900;"
     />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
     <input
+      disabled
       matInput
-      placeholder="Fecha de Nacimiento"
       required
-      formControlName="fecha_nacimiento"
+      [(ngModel)]="trabajador.apellidos"
+      style="font-weight: 900;"
     />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <button mat-button color="primary" [routerLink]="['edicion', row.id]">
-      Actualizar
-    </button>
+    <input
+      disabled
+      matInput
+      required
+      [(ngModel)]="trabajador.sexo"
+      style="font-weight: 900;"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      disabled
+      matInput
+      required
+      [(ngModel)]="trabajador.direccion"
+      style="font-weight: 900;"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      disabled
+      matInput
+      required
+      [(ngModel)]="trabajador.fecha_nacimiento"
+      style="font-weight: 900;"
+    />
   </mat-form-field>
 
   <!-- <button mat-raised-button color="primary" type="submit" [disabled]="frmPaciente.invalid">-->
-  <button mat-raised-button color="primary" type="submit">
+  <button
+    mat-raised-button
+    color="primary"
+    [routerLink]="['edicion', trabajador.id]"
+  >
+    Editar Perfil
+  </button>
+  <!-- <button mat-raised-button color="primary" type="submit">
     <mat-icon>done</mat-icon>
     <span>Aceptar</span>
   </button>
   <button mat-raised-button color="accent" routerLink="/paciente" type="button">
     <mat-icon>close</mat-icon>
     <span>Cancelar</span>
-  </button>
-</form>
+  </button> -->
+</div>

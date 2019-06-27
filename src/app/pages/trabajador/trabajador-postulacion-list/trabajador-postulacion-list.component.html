@@ -1,0 +1,62 @@
+<br />
+<button
+  mat-raised-button
+  color="primary"
+  routerLink="/trabajador"
+  style="width: 100px;"
+>
+  Volver
+</button>
+<br />
+<mat-toolbar>Mis Postulaciones</mat-toolbar>
+<div class="example-container mat-elevation-z8">
+  <router-outlet></router-outlet>
+
+  <div class="example-header">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyFilter($event.target.value)"
+        placeholder="Buscar Postulaciones"
+      />
+    </mat-form-field>
+  </div>
+  <!--  <button (click)="mostrar()">Mostrar Postulaciones</button> -->
+
+  <mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="idPostulacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="trabajador">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Trabajador</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.trabajador.nombres }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="trabajo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Trabajo</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.trabajo.descripcion }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Estado</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{
+        row.estado === 0
+          ? "Pendiente"
+          : row.estado === 1
+          ? "Contratado"
+          : "Rechazado"
+      }}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </mat-table>
+</div>

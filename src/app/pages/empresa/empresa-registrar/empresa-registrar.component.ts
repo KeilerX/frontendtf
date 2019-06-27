@@ -63,15 +63,26 @@ export class EmpresaRegistrarComponent implements OnInit {
       this.empresaService.modificar(this.empresa).subscribe(data => {
         this.empresaService.listar().subscribe(empresas => {
           this.empresaService.empresaCambio.next(empresas);
-          this.empresaService.mensajeCambio.next("Se modificaó correctamente.");
+          this.empresaService.mensajeCambio.next("Se modificó correctamente.");
         });
       });
     } else {
       this.empresaService.registrar(this.empresa).subscribe(data => {
-        this.empresaService.listar().subscribe(empresas => {
-          this.empresaService.empresaCambio.next(empresas);
-          this.empresaService.mensajeCambio.next("Se registró correctamente.");
-        });
+        if (data !== false) {
+          this.empresaService.listar().subscribe(empresas => {
+            this.empresaService.empresaCambio.next(empresas);
+            this.empresaService.mensajeCambio.next(
+              "Se registró correctamente."
+            );
+          });
+          this.router.navigate(["empresa-listar"]);
+        } else {
+          this.empresaService.listar().subscribe(empresas => {
+            this.empresaService.empresaCambio.next(empresas);
+            this.empresaService.mensajeCambio.next("Empresa ya registrada.");
+          });
+          this.router.navigate(["empresa-listar/nuevo"]);
+        }
       });
     }
   }

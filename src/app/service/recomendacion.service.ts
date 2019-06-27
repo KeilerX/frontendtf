@@ -23,6 +23,10 @@ export class RecomendacionService {
     return this.http.get<Recomendacion>(`${this.url}/${id}`);
   }
 
+  listarRecomendacionPorTrabajador(id: number) {
+    return this.http.get<Recomendacion[]>(`${this.url}/trabajador/${id}`);
+  }
+
   registrar(recomendacion: Recomendacion) {
     return this.http.post(this.url, recomendacion);
   }

@@ -24,6 +24,14 @@ export class TrabajoService {
     return this.http.get<Trabajo>(`${this.url}/${id}`);
   }
 
+  listarTrabajoPorEmpresa(id: number) {
+    return this.http.get<Trabajo[]>(`${this.url}/empresa/${id}`);
+  }
+
+  listarDisponibles() {
+    return this.http.get<Trabajo[]>(`${this.url}/disponibles`);
+  }
+
   registrar(trabajoDTO: TrabajoListaArea) {
     return this.http.post(this.url, trabajoDTO);
   }

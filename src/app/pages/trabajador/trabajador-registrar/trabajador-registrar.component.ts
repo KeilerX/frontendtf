@@ -15,6 +15,7 @@ export class TrabajadorRegistrarComponent implements OnInit {
   edicion: boolean = false;
   trabajador: Trabajador;
 
+  fallo: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -79,14 +80,25 @@ export class TrabajadorRegistrarComponent implements OnInit {
       });
     } else {
       this.trabajadorService.registrar(this.trabajador).subscribe(data => {
-        this.trabajadorService.listar().subscribe(trabajadores => {
-          this.trabajadorService.trabajadorCambio.next(trabajadores);
-          this.trabajadorService.mensajeCambio.next(
-            "Se registró correctamente."
-          );
-        });
+        if (data !== false) {
+          this.trabajadorService.listar().subscribe(trabajadores => {
+            this.trabajadorService.trabajadorCambio.next(trabajadores);
+            this.trabajadorService.mensajeCambio.next(
+              "Se registró correctamente."
+            );
+          });
+          this.router.navigate(["trabajador-listar"]);
+        } else {
+          this.trabajadorService.listar().subscribe(trabajadores => {
+            this.trabajadorService.trabajadorCambio.next(trabajadores);
+            this.trabajadorService.mensajeCambio.next(
+              "Trabajador ya registrado."
+            );
+          });
+          this.router.navigate(["trabajador-listar/nuevo"]);
+          this.fallo = true;
+        }
       });
     }
-    this.router.navigate(["trabajador-listar"]);
   }
 }

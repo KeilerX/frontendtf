@@ -21,6 +21,7 @@ export class EmpresaRecomendacionComponent implements OnInit {
   id: number;
   idTrabajadorSeleccionado: number;
   idEmpresaSeleccionado: number;
+  cEmpresa: Empresa = new Empresa();
 
   mensaje: string;
 
@@ -33,18 +34,18 @@ export class EmpresaRecomendacionComponent implements OnInit {
 
   ngOnInit() {
     this.listarTrabajadores();
-    this.listarEmpresas();
+    this.empresaService
+      .listarEmpresaPorId(+localStorage.getItem("empresa"))
+      .subscribe(data => {
+        this.cEmpresa = data;
+        console.log(data);
+      });
+    this.idEmpresaSeleccionado = +localStorage.getItem("empresa");
   }
 
   listarTrabajadores() {
     this.trabajadorService.listar().subscribe(data => {
       this.trabajadores = data;
-    });
-  }
-
-  listarEmpresas() {
-    this.empresaService.listar().subscribe(data => {
-      this.empresas = data;
     });
   }
 

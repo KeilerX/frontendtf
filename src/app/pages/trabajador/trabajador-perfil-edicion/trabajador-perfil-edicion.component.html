@@ -1,12 +1,11 @@
-<mat-card>Ingrese los datos de la Empresa</mat-card>
-
+<mat-card>Actualice los datos de su Perfil</mat-card>
 <br />
 
 <form
   class="example-container"
   [formGroup]="form"
   (ngSubmit)="operar()"
-  #frmEmpresa="ngForm"
+  #frmTrabajador="ngForm"
 >
   <div [hidden]="true">
     <mat-form-field class="example-full-width">
@@ -15,7 +14,20 @@
   </div>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Nombre" required formControlName="nombre" />
+    <input matInput placeholder="Nombres" required formControlName="nombres" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      matInput
+      placeholder="Apellidos"
+      required
+      formControlName="apellidos"
+    />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Sexo" required formControlName="sexo" />
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
@@ -30,19 +42,9 @@
   <mat-form-field class="example-full-width">
     <input
       matInput
-      placeholder="Teléfono"
+      placeholder="Fecha de Nacimiento"
       required
-      formControlName="telefono"
-      type="number"
-    />
-  </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <input
-      matInput
-      placeholder="Descripción"
-      required
-      formControlName="descripcion"
+      formControlName="fecha_nacimiento"
     />
   </mat-form-field>
 
@@ -50,12 +52,7 @@
     <mat-icon>done</mat-icon>
     <span>Aceptar</span>
   </button>
-  <button
-    mat-raised-button
-    color="accent"
-    routerLink="/empresa-listar"
-    type="button"
-  >
+  <button mat-raised-button color="accent" routerLink="/trabajador-perfil">
     <mat-icon>close</mat-icon>
     <span>Cancelar</span>
   </button>

@@ -1,14 +1,4 @@
-<br />
-<button
-  mat-raised-button
-  color="primary"
-  routerLink="/trabajador"
-  style="width: 100px;"
->
-  Volver
-</button>
-<br />
-<mat-toolbar>Trabajos Disponibles</mat-toolbar>
+<mat-toolbar>Lista de Trabajos Publicados</mat-toolbar>
 <div class="example-container mat-elevation-z8">
   <router-outlet></router-outlet>
 
@@ -21,6 +11,9 @@
       />
     </mat-form-field>
   </div>
+  <button mat-raised-button color="primary" (click)="mostrar()">
+    Actualizar
+  </button>
 
   <mat-table [dataSource]="dataSource" matSort>
     <ng-container matColumnDef="idTrabajo">
@@ -35,20 +28,6 @@
       <mat-cell *matCellDef="let row">{{ row.descripcion }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="sueldo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Sueldo</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row">{{ row.sueldo }}</mat-cell>
-    </ng-container>
-
-    <!--     <ng-container matColumnDef="estado">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Estado</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row">{{ row.estado }}</mat-cell>
-    </ng-container> -->
-
     <ng-container matColumnDef="empresa">
       <mat-header-cell *matHeaderCellDef mat-sort-header
         >Empresa</mat-header-cell
@@ -56,11 +35,31 @@
       <mat-cell *matCellDef="let row">{{ row.empresa.nombre }}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="sueldo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Sueldo</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.sueldo }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Estado</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{
+        row.estado === true ? "Asignado" : "No Asignado"
+      }}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="acciones">
       <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" (click)="postular(row.id)">
-          Postular
+        <button
+          mat-button
+          color="primary"
+          [routerLink]="['empresa-trabajo-postulacion', row.id]"
+        >
+          Ver Postulaciones
         </button>
       </mat-cell>
     </ng-container>
@@ -69,3 +68,13 @@
     <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
   </mat-table>
 </div>
+<br />
+<button
+  mat-raised-button
+  color="primary"
+  routerLink="/empresa"
+  style="width: 100px;"
+>
+  Volver
+</button>
+<br />

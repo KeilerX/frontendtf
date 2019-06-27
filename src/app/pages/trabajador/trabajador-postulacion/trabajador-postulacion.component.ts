@@ -4,11 +4,8 @@ import { Trabajo } from "src/app/model/trabajo";
 import { TrabajoService } from "src/app/service/trabajo.service";
 import { TrabajadorService } from "src/app/service/trabajador.service";
 import { MatSnackBar } from "@angular/material";
-import { TrabajadorPostulacion } from "src/app/model/trabajadorPostulacion";
 import { Postulacion } from "src/app/model/postulacion";
 import { PostulacionService } from "src/app/service/postulacion.service";
-import { UsuarioService } from "src/app/service/usuario.service";
-import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-trabajador-postulacion",
@@ -23,9 +20,7 @@ export class TrabajadorPostulacionComponent implements OnInit {
   idTrabajadorSeleccionado: number;
   idTrabajoSeleccionado: number;
 
-  cTrabajador: Trabajador;
-  userId: number;
-  _subscription_user_id: Subscription;
+  cTrabajador: Trabajador = new Trabajador();
 
   nombres: string;
   estado: number = 0;
@@ -36,19 +31,11 @@ export class TrabajadorPostulacionComponent implements OnInit {
     private trabajoService: TrabajoService,
     private trabajadorService: TrabajadorService,
     private postulacionService: PostulacionService,
-    private usuarioService: UsuarioService,
     private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
-    this._subscription_user_id = this.usuarioService.execChange.subscribe(
-      value => {
-        this.idTrabajadorSeleccionado = value; // this.username will hold your value and modify it every time it changes
-        console.log(this.idTrabajadorSeleccionado);
-      }
-    );
-    //this.listarTrabajadores();
-    this.listarTrabajador();
+    this.listarTrabajadores();
     this.listarTrabajos();
   }
 
@@ -60,15 +47,6 @@ export class TrabajadorPostulacionComponent implements OnInit {
         console.log(data);
       });
     this.idTrabajadorSeleccionado = +localStorage.getItem("trabajador");
-    this.nombres = this.cTrabajador.nombres.concat(this.cTrabajador.apellidos);
-  }
-
-  listarTrabajador() {
-    this.trabajadorService
-      .listarTrabajadorPorId(this.idTrabajadorSeleccionado)
-      .subscribe(data => {
-        this.cTrabajador = data;
-      });
   }
 
   listarTrabajos() {

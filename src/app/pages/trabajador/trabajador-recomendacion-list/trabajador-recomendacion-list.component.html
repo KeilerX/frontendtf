@@ -8,7 +8,7 @@
   Volver
 </button>
 <br />
-<mat-toolbar>Trabajos Disponibles</mat-toolbar>
+<mat-toolbar>Mis Recomendaciones</mat-toolbar>
 <div class="example-container mat-elevation-z8">
   <router-outlet></router-outlet>
 
@@ -17,37 +17,24 @@
       <input
         matInput
         (keyup)="applyFilter($event.target.value)"
-        placeholder="Buscar Trabajo"
+        placeholder="Buscar Recomendaciones"
       />
     </mat-form-field>
   </div>
+  <!-- <button (click)="mostrar()">Mostrar Recomendaciones</button> -->
 
   <mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="idTrabajo">
+    <ng-container matColumnDef="idRecomendacion">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
       <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="descripcion">
+    <ng-container matColumnDef="trabajador">
       <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Descripción</mat-header-cell
+        >Trabajador</mat-header-cell
       >
-      <mat-cell *matCellDef="let row">{{ row.descripcion }}</mat-cell>
+      <mat-cell *matCellDef="let row">{{ row.trabajador.nombres }}</mat-cell>
     </ng-container>
-
-    <ng-container matColumnDef="sueldo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Sueldo</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row">{{ row.sueldo }}</mat-cell>
-    </ng-container>
-
-    <!--     <ng-container matColumnDef="estado">
-      <mat-header-cell *matHeaderCellDef mat-sort-header
-        >Estado</mat-header-cell
-      >
-      <mat-cell *matCellDef="let row">{{ row.estado }}</mat-cell>
-    </ng-container> -->
 
     <ng-container matColumnDef="empresa">
       <mat-header-cell *matHeaderCellDef mat-sort-header
@@ -56,13 +43,11 @@
       <mat-cell *matCellDef="let row">{{ row.empresa.nombre }}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="acciones">
-      <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
-      <mat-cell *matCellDef="let row">
-        <button mat-button color="primary" (click)="postular(row.id)">
-          Postular
-        </button>
-      </mat-cell>
+    <ng-container matColumnDef="comentario">
+      <mat-header-cell *matHeaderCellDef mat-sort-header
+        >Comentario</mat-header-cell
+      >
+      <mat-cell *matCellDef="let row">{{ row.comentario }}</mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

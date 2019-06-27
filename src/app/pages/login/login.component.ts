@@ -19,22 +19,12 @@ export class LoginComponent implements OnInit {
   idTrabajadorSeleccionado: number;
   idEmpresaSeleccionado: number;
 
-  userId: number;
   mensaje: string;
-  _subscription_user_id: Subscription;
 
   constructor(
     private trabajadorService: TrabajadorService,
-    private empresaService: EmpresaService,
-    private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar
-  ) {
-    this._subscription_user_id = this.usuarioService.execChange.subscribe(
-      value => {
-        this.userId = value; // this.username will hold your value and modify it every time it changes
-      }
-    );
-  }
+    private empresaService: EmpresaService
+  ) {}
 
   ngOnInit() {
     this.listarTrabajadores();
@@ -53,12 +43,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  seleccionar() {
-    this.usuarioService.setCurrentUser(this.idTrabajadorSeleccionado);
-    console.log(this.userId);
+  seleccionarTrabajador() {
     localStorage.setItem(
       "trabajador",
       JSON.stringify(this.idTrabajadorSeleccionado)
     );
+  }
+
+  seleccionarEmpresa() {
+    localStorage.setItem("empresa", JSON.stringify(this.idEmpresaSeleccionado));
   }
 }

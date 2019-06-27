@@ -15,6 +15,11 @@ import { TrabajoRegistrarComponent } from "./pages/trabajo/trabajo-registrar/tra
 import { TrabajoComponent } from "./pages/trabajo/trabajo.component";
 import { TrabajadorListComponent } from "./pages/trabajador/trabajador-list.component";
 import { EmpresaListComponent } from "./pages/empresa/empresa-list.component";
+import { TrabajadorPerfilEdicionComponent } from "./pages/trabajador/trabajador-perfil-edicion/trabajador-perfil-edicion.component";
+import { TrabajadorPostulacionListComponent } from "./pages/trabajador/trabajador-postulacion-list/trabajador-postulacion-list.component";
+import { TrabajadorRecomendacionListComponent } from "./pages/trabajador/trabajador-recomendacion-list/trabajador-recomendacion-list.component";
+import { EmpresaTrabajoListComponent } from "./pages/empresa/empresa-trabajo-list/empresa-trabajo-list.component";
+import { EmpresaTrabajoPostulacionComponent } from "./pages/empresa/empresa-trabajo-postulacion/empresa-trabajo-postulacion.component";
 
 const routes: Routes = [
   /*   {
@@ -48,7 +53,21 @@ const routes: Routes = [
   },
   {
     path: "trabajador-perfil",
-    component: TrabajadorPerfilComponent
+    component: TrabajadorPerfilComponent,
+    children: [
+      {
+        path: "edicion/:id",
+        component: TrabajadorPerfilEdicionComponent
+      }
+    ]
+  },
+  {
+    path: "trabajador-postulacion",
+    component: TrabajadorPostulacionListComponent
+  },
+  {
+    path: "trabajador-recomendacion",
+    component: TrabajadorRecomendacionListComponent
   },
   {
     path: "trabajo-listar",
@@ -67,9 +86,23 @@ const routes: Routes = [
     ]
   },
   {
-    path: "trabajador-recomendacion",
+    path: "empresa-recomendacion",
     component: EmpresaRecomendacionComponent
   },
+  {
+    path: "empresa-trabajo-listar",
+    component: EmpresaTrabajoListComponent,
+    children: [
+      {
+        path: "empresa-trabajo-postulacion/:id",
+        component: EmpresaTrabajoPostulacionComponent
+      }
+    ]
+  },
+  /* {
+    path: "empresa-trabajo-postulacion/:id",
+    component: EmpresaTrabajoPostulacionComponent
+  }, */
   {
     path: "trabajo-postulacion",
     component: TrabajadorPostulacionComponent

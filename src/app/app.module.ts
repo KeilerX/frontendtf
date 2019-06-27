@@ -27,6 +27,11 @@ import { TrabajoComponent } from "./pages/trabajo/trabajo.component";
 import { TrabajadorListComponent } from "./pages/trabajador/trabajador-list.component";
 import { TrabajoEdicionComponent } from "./pages/trabajo/trabajo-edicion/trabajo-edicion.component";
 import { UsuarioService } from "./service/usuario.service";
+import { TrabajadorPerfilEdicionComponent } from './pages/trabajador/trabajador-perfil-edicion/trabajador-perfil-edicion.component';
+import { TrabajadorPostulacionListComponent } from './pages/trabajador/trabajador-postulacion-list/trabajador-postulacion-list.component';
+import { TrabajadorRecomendacionListComponent } from './pages/trabajador/trabajador-recomendacion-list/trabajador-recomendacion-list.component';
+import { EmpresaTrabajoListComponent } from './pages/empresa/empresa-trabajo-list/empresa-trabajo-list.component';
+import { EmpresaTrabajoPostulacionComponent } from './pages/empresa/empresa-trabajo-postulacion/empresa-trabajo-postulacion.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +53,12 @@ import { UsuarioService } from "./service/usuario.service";
     RecomendacionComponent,
     TrabajoRegistrarComponent,
     TrabajoComponent,
-    TrabajoEdicionComponent
+    TrabajoEdicionComponent,
+    TrabajadorPerfilEdicionComponent,
+    TrabajadorPostulacionListComponent,
+    TrabajadorRecomendacionListComponent,
+    EmpresaTrabajoListComponent,
+    EmpresaTrabajoPostulacionComponent
   ],
   imports: [
     BrowserModule,

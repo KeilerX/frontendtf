@@ -1,5 +1,24 @@
+<br />
+<button
+  mat-raised-button
+  color="primary"
+  routerLink="/empresa"
+  style="width: 100px;"
+>
+  Volver
+</button>
+<br />
 <mat-toolbar>Recomendar a un Trabajador</mat-toolbar>
 <div class="example-container">
+  <mat-form-field>
+    <input
+      disabled
+      matInput
+      [(ngModel)]="cEmpresa.nombre"
+      style="font-weight: 900;"
+    />
+  </mat-form-field>
+
   <mat-form-field>
     <mat-select placeholder="Trabajador" [(value)]="idTrabajadorSeleccionado">
       <mat-option *ngFor="let a of trabajadores" [value]="a.id"
@@ -8,13 +27,13 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field>
+  <!--  <mat-form-field>
     <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionado">
       <mat-option *ngFor="let b of empresas" [value]="b.id">{{
         b.nombre
       }}</mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
 
   <mat-form-field>
     <input

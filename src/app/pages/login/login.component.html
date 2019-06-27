@@ -45,13 +45,28 @@
   <button
     mat-raised-button
     color="primary"
-    (click)="seleccionar()"
+    (click)="seleccionarTrabajador()"
     routerLink="/trabajador"
   >
     Iniciar como Trabajador
   </button>
   <br />
-  <button mat-raised-button color="primary" routerLink="/empresa">
+
+  <mat-form-field>
+    <mat-select placeholder="Empresa" [(value)]="idEmpresaSeleccionado">
+      <mat-option *ngFor="let e of empresas" [value]="e.id">{{
+        e.nombre
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br />
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="seleccionarEmpresa()"
+    routerLink="/empresa"
+  >
     Iniciar como Empresa
   </button>
 </div>

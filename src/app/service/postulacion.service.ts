@@ -23,6 +23,17 @@ export class PostulacionService {
     return this.http.get<Postulacion>(`${this.url}/${id}`);
   }
 
+  listarPostulacionPorTrabajador(id: number) {
+    return this.http.get<Postulacion[]>(`${this.url}/trabajador/${id}`);
+  }
+
+  listarPostulacionPorTrabajo(id: number) {
+    return this.http.get<Postulacion[]>(`${this.url}/trabajo/${id}`);
+  }
+
+  contratar(id1: number, id2: number) {
+    return this.http.get<Postulacion[]>(`${this.url}/contratar/${id1}/${id2}`);
+  }
   registrar(postulacion: Postulacion) {
     return this.http.post(this.url, postulacion);
   }
