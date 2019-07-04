@@ -15,6 +15,7 @@ export class TrabajadorRegistrarComponent implements OnInit {
   edicion: boolean = false;
   trabajador: Trabajador;
 
+  genderList = ["Masculino", "Femenino"];
   fallo: boolean = false;
   constructor(
     private route: ActivatedRoute,
@@ -69,6 +70,7 @@ export class TrabajadorRegistrarComponent implements OnInit {
     let localISOTime = new Date(Date.now() - tzoffset).toISOString();
     this.trabajador.fecha_nacimiento = localISOTime;
     //2018-09-27T21:00:35.259Z ISODate */
+
     if (this.edicion) {
       this.trabajadorService.modificar(this.trabajador).subscribe(data => {
         this.trabajadorService.listar().subscribe(trabajadores => {
